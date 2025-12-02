@@ -5,6 +5,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { LoadingAddressSection } from "@/components/valuation/step-1/loading-address-section";
 import { UnloadingAddressSection } from "@/components/valuation/step-1/unloading-address-section";
 import { StepIndicator } from "@/components/valuation/step-indicator";
+import { ServiceSelectionSection } from "@/components/valuation/step-2/service-selection-section";
+import { FormActions } from "@/components/valuation/form-actions";
 
 const stepTitles: Record<number, string> = {
   1: "Customer Info & Address Fill-Up",
@@ -18,8 +20,19 @@ const stepTitles: Record<number, string> = {
 };
 
 export default function Home() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [currentStep, setCurrentStep] = useState(1);
+
+  const handleNext = () => {
+    if (currentStep < 8) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const handleBack = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
 
   return (
     <main className="min-h-screen bg-background py-8 px-4">
@@ -39,6 +52,14 @@ export default function Home() {
                   <UnloadingAddressSection />
                 </>
               )}
+
+              {currentStep === 2 && <ServiceSelectionSection />}
+
+              <FormActions
+                showBack={currentStep > 1}
+                onBack={handleBack}
+                onNext={handleNext}
+              />
             </form>
           </CardContent>
         </Card>
