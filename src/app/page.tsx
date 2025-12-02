@@ -8,6 +8,7 @@ import { StepIndicator } from "@/components/valuation/step-indicator";
 import { ServiceSelectionSection } from "@/components/valuation/step-2/service-selection-section";
 import { FormActions } from "@/components/valuation/form-actions";
 import { RoomInventorySection } from "@/components/valuation/step-3/room-inventory-section";
+import { DeliveryDetailsSection } from "@/components/valuation/step-4/delivery-details-section";
 
 const stepTitles: Record<number, string> = {
   1: "Customer Info & Address Fill-Up",
@@ -57,6 +58,8 @@ export default function Home() {
               {currentStep === 2 && <ServiceSelectionSection />}
 
               {currentStep === 3 && <RoomInventorySection />}
+
+              {currentStep === 4 && <DeliveryDetailsSection />}
 
               <FormActions
                 showBack={currentStep > 1}
