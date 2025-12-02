@@ -13,6 +13,7 @@ import { NotesSection } from "@/components/valuation/step-5/notes-section";
 import { QuoteSetupSection } from "@/components/valuation/step-6/quote-setup-section";
 import { FinalQuoteSection } from "@/components/valuation/step-7/final-quote-section";
 import { SendQuoteSection } from "@/components/valuation/step-8/send-quote-section";
+import { CustomerInformationSection } from "@/components/valuation/step-1/customer-information-section";
 
 const stepTitles: Record<number, string> = {
   1: "Customer Info & Address Fill-Up",
@@ -54,6 +55,7 @@ export default function Home() {
             <form>
               {currentStep === 1 && (
                 <>
+                  <CustomerInformationSection />
                   <LoadingAddressSection />
                   <UnloadingAddressSection />
                 </>
