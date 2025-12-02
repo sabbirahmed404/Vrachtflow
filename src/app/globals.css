@@ -118,3 +118,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom Colors */
+.bg-primary {
+  background-color: #0d2e55; /* Replace with your desired color */
+}
