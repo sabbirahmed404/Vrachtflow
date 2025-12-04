@@ -248,8 +248,8 @@ export function QuoteSetupSection() {
                   </div>
                 )}
                 <CardContent className="p-5">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-start gap-4">
+                  <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-4">
+                    <div className="flex flex-col md:flex-row items-center md:items-start gap-4 w-full">
                       <div
                         className={`p-3 rounded-xl ${
                           selectedPackage === pkg.id
@@ -259,14 +259,24 @@ export function QuoteSetupSection() {
                       >
                         {pkg.icon}
                       </div>
-                      <div>
-                        <h3 className="font-semibold text-foreground text-lg">
-                          {pkg.name}
-                        </h3>
-                        <p className="text-sm text-muted-foreground mb-3">
-                          {pkg.description}
-                        </p>
-                        <div className="flex flex-wrap gap-2">
+                      <div className="flex-1 text-center md:text-left w-full">
+                        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 md:gap-4 mb-3">
+                          <div>
+                            <h3 className="font-semibold text-foreground text-lg">
+                              {pkg.name}
+                            </h3>
+                            <p className="text-sm text-muted-foreground">
+                              {pkg.description}
+                            </p>
+                          </div>
+                          <div className="md:text-right">
+                            <p className="text-sm text-muted-foreground">From</p>
+                            <p className="text-2xl font-bold text-foreground">
+                              €{pkg.basePrice}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                           {pkg.includes.map((item) => (
                             <span
                               key={item}
@@ -279,12 +289,6 @@ export function QuoteSetupSection() {
                         </div>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <p className="text-sm text-muted-foreground">From</p>
-                      <p className="text-2xl font-bold text-foreground">
-                        €{pkg.basePrice}
-                      </p>
-                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -292,8 +296,8 @@ export function QuoteSetupSection() {
           </div>
 
           <div className="mt-6 p-5 bg-primary/5 border border-primary/20 rounded-xl">
-            <div className="flex items-center justify-between">
-              <div>
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+              <div className="text-center md:text-left">
                 <p className="text-sm text-muted-foreground">
                   Estimated Total for {selectedPkg?.name}
                 </p>
@@ -302,7 +306,7 @@ export function QuoteSetupSection() {
                   €5)
                 </p>
               </div>
-              <p className="text-3xl font-bold text-primary">
+              <p className="text-3xl font-bold text-primary text-center md:text-right">
                 €{packagePrice.toFixed(2)}
               </p>
             </div>
