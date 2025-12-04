@@ -77,7 +77,7 @@ export function ServiceSelectionSection() {
           {serviceOptions.map((option) => (
             <label
               key={option.id}
-              className={`flex items-start gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all ${
+              className={`flex flex-col md:flex-row items-center md:items-start gap-3 md:gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all ${
                 selectedServices.includes(option.id)
                   ? "border-primary bg-primary/5"
                   : "border-border bg-card hover:border-primary/50 hover:bg-muted/50"
@@ -86,24 +86,26 @@ export function ServiceSelectionSection() {
               <Checkbox
                 checked={selectedServices.includes(option.id)}
                 onCheckedChange={() => toggleService(option.id)}
-                className="mt-0.5"
+                className="md:mt-0.5 self-start md:self-auto"
               />
-              <div
-                className={`p-2 rounded-lg shrink-0 ${
-                  selectedServices.includes(option.id)
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-muted-foreground"
-                }`}
-              >
-                {option.icon}
-              </div>
-              <div className="flex-1">
-                <span className="font-medium text-foreground">
-                  {option.title}
-                </span>
-                <p className="text-sm text-muted-foreground mt-0.5">
-                  {option.description}
-                </p>
+              <div className="flex flex-col md:flex-row items-center md:items-start gap-3 md:gap-4 w-full text-center md:text-left">
+                <div
+                  className={`p-2.5 rounded-lg shrink-0 ${
+                    selectedServices.includes(option.id)
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted text-muted-foreground"
+                  }`}
+                >
+                  {option.icon}
+                </div>
+                <div className="flex-1">
+                  <span className="font-medium text-foreground block">
+                    {option.title}
+                  </span>
+                  <p className="text-sm text-muted-foreground mt-0.5">
+                    {option.description}
+                  </p>
+                </div>
               </div>
             </label>
           ))}
