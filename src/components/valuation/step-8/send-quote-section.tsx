@@ -92,11 +92,11 @@ export function SendQuoteSection() {
     <>
       <FormSection title="Quote Preview" showDivider>
         <Card className="border border-border bg-muted/30">
-          <CardContent className="p-5">
-            <div className="flex items-start justify-between mb-4">
+          <CardContent className="p-4 md:p-5">
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-4">
               <div>
                 <p className="text-sm text-muted-foreground">Quote Number</p>
-                <p className="font-mono font-semibold text-foreground">
+                <p className="font-mono font-semibold text-foreground text-lg">
                   {quoteData.quoteNumber}
                 </p>
               </div>
@@ -104,39 +104,39 @@ export function SendQuoteSection() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="gap-2 bg-transparent"
+                  className="gap-2 bg-transparent flex-1 md:flex-none"
                 >
                   <Download className="h-4 w-4" />
-                  PDF
+                  <span className="md:inline">PDF</span>
                 </Button>
                 <Button
                   variant="outline"
                   size="sm"
-                  className="gap-2 bg-transparent"
+                  className="gap-2 bg-transparent flex-1 md:flex-none"
                 >
                   <Printer className="h-4 w-4" />
-                  Print
+                  <span className="md:inline">Print</span>
                 </Button>
               </div>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 p-4 bg-background rounded-lg border border-border">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 p-4 bg-background rounded-lg border border-border">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-muted rounded-lg">
+                <div className="p-2 bg-muted rounded-lg flex-shrink-0">
                   <User className="h-5 w-5 text-muted-foreground" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-xs text-muted-foreground">Customer</p>
-                  <p className="font-medium text-foreground">
+                  <p className="font-medium text-foreground truncate">
                     {quoteData.customerName}
                   </p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-muted rounded-lg">
+                <div className="p-2 bg-muted rounded-lg flex-shrink-0">
                   <Euro className="h-5 w-5 text-muted-foreground" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-xs text-muted-foreground">Total Amount</p>
                   <p className="font-medium text-foreground">
                     €{quoteData.totalAmount.toFixed(2)}
@@ -144,10 +144,10 @@ export function SendQuoteSection() {
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-muted rounded-lg">
+                <div className="p-2 bg-muted rounded-lg flex-shrink-0">
                   <Calendar className="h-5 w-5 text-muted-foreground" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-xs text-muted-foreground">Valid Until</p>
                   <p className="font-medium text-foreground">
                     {quoteData.validUntil}
