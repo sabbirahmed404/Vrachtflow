@@ -322,9 +322,9 @@ export function FinalQuoteSection() {
               <CardContent className="p-4">
                 {editingItem?.id === item.id ? (
                   <div className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label className="text-xs">Item Name</Label>
+                        <Label className="text-xs font-medium">Item Name</Label>
                         <Input
                           value={editingItem.name}
                           onChange={(e) =>
@@ -336,7 +336,7 @@ export function FinalQuoteSection() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label className="text-xs">Description</Label>
+                        <Label className="text-xs font-medium">Description</Label>
                         <Input
                           value={editingItem.description}
                           onChange={(e) =>
@@ -348,9 +348,9 @@ export function FinalQuoteSection() {
                         />
                       </div>
                     </div>
-                    <div className="grid grid-cols-4 gap-4">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                       <div className="space-y-2">
-                        <Label className="text-xs">Quantity</Label>
+                        <Label className="text-xs font-medium">Quantity</Label>
                         <Input
                           type="number"
                           min="1"
@@ -364,7 +364,7 @@ export function FinalQuoteSection() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label className="text-xs">Unit Price (€)</Label>
+                        <Label className="text-xs font-medium">Price (€)</Label>
                         <Input
                           type="number"
                           min="0"
@@ -379,7 +379,7 @@ export function FinalQuoteSection() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label className="text-xs">VAT Rate</Label>
+                        <Label className="text-xs font-medium">VAT Rate</Label>
                         <Select
                           value={String(editingItem.vatRate)}
                           onValueChange={(value) =>
@@ -389,7 +389,7 @@ export function FinalQuoteSection() {
                             })
                           }
                         >
-                          <SelectTrigger>
+                          <SelectTrigger className="h-10">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -399,58 +399,65 @@ export function FinalQuoteSection() {
                           </SelectContent>
                         </Select>
                       </div>
-                      <div className="flex items-center gap-2 pt-6">
-                        <Switch
-                          checked={editingItem.includeVat}
-                          onCheckedChange={(checked) =>
-                            setEditingItem({
-                              ...editingItem,
-                              includeVat: checked,
-                            })
-                          }
-                        />
-                        <Label className="text-xs">VAT</Label>
+                      <div className="space-y-2">
+                        <Label className="text-xs font-medium">Include VAT</Label>
+                        <div className="flex items-center h-10 gap-2 px-3 border rounded-md">
+                          <Switch
+                            checked={editingItem.includeVat}
+                            onCheckedChange={(checked) =>
+                              setEditingItem({
+                                ...editingItem,
+                                includeVat: checked,
+                              })
+                            }
+                          />
+                          <span className="text-xs text-muted-foreground">
+                            {editingItem.includeVat ? "Yes" : "No"}
+                          </span>
+                        </div>
                       </div>
                     </div>
-                    <div className="flex gap-2 justify-end">
+                    <div className="flex gap-2 justify-end pt-2">
                       <Button
                         variant="outline"
                         size="sm"
                         onClick={() => setEditingItem(null)}
+                        className="flex-1 md:flex-none"
                       >
                         Cancel
                       </Button>
                       <Button
                         size="sm"
                         onClick={() => handleUpdateItem(editingItem)}
+                        className="flex-1 md:flex-none"
                       >
-                        Save
+                        Save Changes
                       </Button>
                     </div>
                   </div>
                 ) : (
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                     <div className="flex-1">
-                      <div className="flex items-center gap-2">
+                      <div className="flex flex-col md:flex-row md:items-center gap-2">
                         <h4 className="font-medium text-foreground">
                           {item.name}
                         </h4>
                         {item.includeVat && (
-                          <span className="text-xs px-2 py-0.5 bg-muted rounded-full text-muted-foreground">
+                          <span className="text-xs px-2 py-0.5 bg-muted rounded-full text-muted-foreground w-fit">
                             +{item.vatRate}% VAT
                           </span>
                         )}
                       </div>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-muted-foreground mt-1">
                         {item.description}
                       </p>
                       <p className="text-xs text-muted-foreground mt-1">
                         {item.quantity} × €{item.unitPrice.toFixed(2)}
                       </p>
                     </div>
-                    <div className="flex items-center gap-4">
-                      <div className="text-right">
-                        <p className="font-semibold text-foreground">
+                    <div className="flex items-center justify-between md:justify-end gap-4 pt-2 md:pt-0 border-t md:border-t-0">
+                      <div className="text-left md:text-right">
+                        <p className="font-semibold text-foreground text-lg md:text-base">
                           €{calculateItemTotal(item).toFixed(2)}
                         </p>
                         {item.includeVat && (
@@ -459,7 +466,7 @@ export function FinalQuoteSection() {
                           </p>
                         )}
                       </div>
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-center gap-1 flex-shrink-0">
                         <Button
                           variant="ghost"
                           size="icon"
