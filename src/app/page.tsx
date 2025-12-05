@@ -14,6 +14,8 @@ import { QuoteSetupSection } from "@/components/valuation/step-6/quote-setup-sec
 import { FinalQuoteSection } from "@/components/valuation/step-7/final-quote-section";
 import { SendQuoteSection } from "@/components/valuation/step-8/send-quote-section";
 import { CustomerInformationSection } from "@/components/valuation/step-1/customer-information-section";
+import { LogOut } from "lucide-react";
+import { logout } from "@/app/login/actions";
 
 const stepTitles: Record<number, string> = {
   1: "Customer Info & Address Fill-Up",
@@ -44,7 +46,15 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-background py-8 px-4">
       <div className="mx-auto max-w-[850px]">
-        <Card className="shadow-lg border border-border/50 rounded-2xl">
+        <Card className="shadow-lg border border-border/50 rounded-2xl relative">
+          <button
+            onClick={() => logout()}
+            className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 transition-colors z-10"
+            title="Sign out"
+            type="button"
+          >
+            <LogOut className="h-5 w-5 text-gray-500 hover:text-red-500" />
+          </button>
           <CardContent className="p-6 md:p-8">
             <StepIndicator
               currentStep={currentStep}
